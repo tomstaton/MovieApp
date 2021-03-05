@@ -1,5 +1,22 @@
 const express = require('express');
+  morgan = require('morgan');
+
 const app = express();
+
+app.use(morgan('common'));
+
+let myLogger = (req, res, next) => {
+  console.log(req.url);
+  next();
+};
+
+let requestTime = (req, res, next) => {
+  req.requestTime = Date.now();
+  next();
+};
+
+app.use(myLogger);
+app.use(requestTime);
 
 let topMovies = [
   {
@@ -34,13 +51,15 @@ let topMovies = [
   }
 ];
 
+app.use(express.static('public'));
+
 // GET requests
 app.get('/', (req, res) => {
   res.send('My top movies');
 });
 
 app.get('/documentation', (req, res) => {
-  res.sendFile('public/documentation.html', { root: dirname });
+  res.sendFile('public/documentation.html', {root:__dirname});
 });
 
 app.get('/movies', (req, res) => {
