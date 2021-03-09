@@ -5,17 +5,13 @@ const app = express();
 
 app.use(morgan('common'));
 
-let myLogger = (req, res, next) => {
-  console.log(req.url);
-  next();
-};
-
-let requestTime = (req, res, next) => {
-  req.requestTime = Date.now();
-  next();
-};
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).send('Something broke!');
+});
 
 app.use(myLogger);
+
 app.use(requestTime);
 
 let topMovies = [
