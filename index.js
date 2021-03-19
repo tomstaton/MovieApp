@@ -59,7 +59,39 @@ app.get('/documentation', (req, res) => {
 });
 
 app.get('/movies', (req, res) => {
-  res.json(topMovies)
+  res.send('Successful get requests returning data on all movies');
+});
+
+app.get('/movies/:movie', (req, res) => {
+  res.send('Successful get request of specific movie');
+});
+
+app.get('/movies/:genre', (req, res)  => {
+  res.send('Successful get request of specific genre');
+});
+
+app.get('/movies/:director', (req, res) => {
+  res.send('Successful get request of director info');
+});
+
+app.post('/users', (req, res) => {
+  res.send('Successful post request of new user');
+});
+
+app.put('/users/:userName/:newName', (req, res) => {
+  res.send('Successful post request of updated username');
+});
+
+app.post('/users/:movieList/:newMovie', (req, res) => {
+  res.send('Successful post request of new movie to list of favorites');
+});
+
+app.delete('/movieList/:movieTitle', (req, res) => {
+  res.send('Successful delete request of movie from list of favorites');
+});
+
+app.delete('/users/:userName', (req, res) => {
+  res.send('Successful delete request of user');
 });
 
 app.listen(8080, () => {

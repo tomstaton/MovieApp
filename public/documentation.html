@@ -1,3 +1,60 @@
 <!DOCTYPE html>
 Internet Movie Based Data <br>
 Here is where a guide to use and programming will be located
+
+Request                                   URL                                   HTTP Method
+get a list of all movies                  /movies                               get
+get single movie info                     /movies/[movieTitle]                  get
+get genre info                            /movies/[genreTitle]                  get
+get director info                         /movies/[directorName]                get
+register as new user                      /users                                post
+allow user to update their info           /users[ID]/[userName]/[newName]       put
+allow user to add to list of fave movies  /users[ID]/[movieList]/[newMovie]     post
+allow user to remove from their list      /users[ID]/[movieList]/[delMovie]     delete
+allow user to deregister                  /users/[ID]                           delete
+
+Return a list of ALL movies to the user
+app.get('/movies', (req, res) => {
+  res.send('Successful get requests returning data on all movies')
+)};
+
+Return data about a single movie by title to the user
+app.get('/movies/:movieTitle', (req, res) => {
+  res.send('Successful get request of specific movie')
+)};
+
+Return data about genre
+app.get('/movies/:genreTitle', (req, res)  => {
+  res.send('Successful get request of specific genre')
+});
+
+Return data about director
+app.get('/movies/:directorName', (req, res) => {
+  res.send('Successful get request of director's info')
+});
+
+Register as new user
+app.post('/users', (req, res) => {
+  res.send('Successful post request of new user')
+});
+
+Update user name
+app.put('/users/:userName/:newName', (req, res) => 
+  res.send('Successful post request of updated username')
+});
+
+Allow user to add a movie to list of favorites
+app.post('/users/:movieList/:newMovie', (req, res) => 
+  res.send('Successful post request of new movie to list of favorites')
+});
+
+Allow user to remove a movie from list of favorites
+app.delete('/movieList/:movieTitle', (req, res) => 
+  res.send('Successful delete request of movie from list of favorites')
+});
+
+Allow existing users to unregister
+app.delete('/users/:userName', (req, res) => 
+  res.send('Successful delete request of user')
+});
+
