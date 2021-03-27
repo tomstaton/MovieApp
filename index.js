@@ -1,5 +1,7 @@
 const express = require('express');
   morgan = require('morgan');
+  bodyParser = require('body-parser'),
+  uuid = require('uuid')
 
 const app = express();
 
@@ -10,9 +12,9 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-app.use(myLogger);
+//app.use(myLogger);
 
-app.use(requestTime);
+//app.use(requestTime);
 
 let topMovies = [
   {
@@ -66,27 +68,31 @@ app.get('/movies/:movie', (req, res) => {
   res.send('Successful get request of specific movie');
 });
 
-app.get('/movies/:genre', (req, res)  => {
-  res.send('Successful get request of specific genre');
+app.get('/movies/genres/:genre', (req, res)  => {
+  res.send('Successful get request of a specific genre');
 });
 
-app.get('/movies/:director', (req, res) => {
+app.get('/movies/directors/:director', (req, res) => {
   res.send('Successful get request of director info');
 });
 
-app.post('/users', (req, res) => {
+app.get('/users', (req, res) => {
+  res.send('Successful get request of list of users');
+})
+
+app.post('/users/:adduser', (req, res) => {
   res.send('Successful post request of new user');
 });
 
-app.put('/users/:userName/:newName', (req, res) => {
-  res.send('Successful post request of updated username');
+app.put('/users/:userName', (req, res) => {
+  res.send('Successful update request of updated username');
 });
 
-app.post('/users/:movieList/:newMovie', (req, res) => {
+app.put('/movies/:addmovie', (req, res) => {
   res.send('Successful post request of new movie to list of favorites');
 });
 
-app.delete('/movieList/:movieTitle', (req, res) => {
+app.delete('/movies/:movieTitle', (req, res) => {
   res.send('Successful delete request of movie from list of favorites');
 });
 
