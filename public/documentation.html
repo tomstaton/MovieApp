@@ -1,59 +1,141 @@
 <!DOCTYPE html>
+<head>
+  <title>Internet Based Movie Data</title>
+  <style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+  }
+  th {
+    text-align: left;
+  }
+  </style>
+</head>
 Internet Movie Based Data <br>
-Here is where a guide to use and programming will be located
+Here is where a guide to use and programming will be located<br>
 
-Request                                   URL                                   HTTP Method
-get a list of all movies                  /movies                               get
-get single movie info                     /movies/[movieTitle]                  get
-get genre info                            /movies/genre/[genreTitle]            get
-get director info                         /movies/directors/[directorName]      get
-register as new user                      /users/[userName]                     post
-allow user to update their info           /users/user[ID]/[newName]             put
-allow user to add to list of fave movies  /users/user[ID]/[newMovie]            post
-allow user to remove from their list      /users/user[ID]/[delMovie]            delete
-allow user to deregister                  /users/user[ID]                       delete
-
-Return a list of ALL movies to the user
+<table style="width:100%">
+  <tr>
+    <th>Request</th>
+    <th>URL</th>
+    <th>HTTP Method</th>
+    <th>Body</th>
+    <th>Response</th>
+  </tr>
+  <tr>
+    <td>Get a list of all movies</td>
+    <td>/movies</td>
+    <td>get</td>
+    <td>none</td>
+    <td>A JSON object holding data on all movies</td>
+  </tr>
+  <tr>
+    <td>Get info on a single movie</td>
+    <td>/movies/movieTitle</td>
+    <td>get</td>
+    <td>none</td>
+    <td>A JSON object holding data on movie, genre, and director<br>
+      {<br> "Genre": { <br>"Name": "Horror" <br> "Description": "A horror film is one that seeks to elicit fear in its audience for entertainment purposes." }
+        { "Director":{ <br>"Name": "John Carpenter" }<br>
+         { "Title": "The Thing"} </td>
+  </tr>
+  <tr>
+    <td>Get genre info</td>
+    <td>/movies/genre/genreTitle</td>
+    <td>get</td>
+    <td>none</td>
+    <td>ip</td>
+  </tr>
+  <tr>
+    <td>Get director info</td>
+    <td>/movies/directors/directorName</td>
+    <td>get</td>
+    <td>none</td>
+    <td>ip</td>
+  </tr>
+  <tr>
+    <td>allow a user to update their info</td>
+    <td>/users/userName[ID]/newName[ID]</td>
+    <td>put</td>
+    <td>none</td>
+    <td>ip</td>
+  </tr>
+  <tr>
+    <td>Register as a new user</td>
+    <td>/users/userName[ID]</td>
+    <td>post</td>
+    <td>A JSON object holding data about the user to add, structured like<br>
+      { "username": "tom123" "password": "password" </td>
+    <td>ip</td>
+  </tr>
+  <tr>
+    <td>Allow a user to add to their list of favorites</td>
+    <td>/users/userName[ID]/add/newMovie</td>
+    <td>post</td>
+    <td>none</td>
+    <td>ip</td>
+  </tr>
+  <tr>
+    <td>Allow a user to remove from their list of favorites</td>
+    <td>/users/userName[ID]/del/delMovie</td>
+    <td>delete</td>
+    <td>none</td>
+    <td>ip</td>
+  </tr>
+  <tr>
+    <td>Allow a user to deregister</td>
+    <td>/users/userName[ID]</td>
+    <td>delete</td>
+    <td>none</td>
+    <td>ip</td>
+  </tr>
+</table>
+<br>
+<br>
+Return a list of ALL movies to the user<br>
 app.get('/movies', (req, res) => {
   res.send('Successful get requests returning data on all movies');
-});
-
-Return data about a single movie by title to the user
+});<br>
+<br>
+Return data about a single movie by title to the user<br>
 app.get('/movies/:movieTitle', (req, res) => {
   res.send('Successful get request of specific movie')
-)};
-
-Return data about genre
+)};<br>
+<br>
+Return data about genre<br>
 app.get('/movies/genre/:genreTitle', (req, res)  => {
   res.send('Successful get request of specific genre')
-});
-
-Return data about director
+});<br>
+<br>
+Return data about director<br>
 app.get('/movies/directors/:directorName', (req, res) => {
   res.send('Successful get request of director's info')
-});
-
-Register as new user
+});<br>
+<br>
+Register as new user<br>
 app.post('/users/:adduser', (req, res) => {
   res.send('Successful post request of new user');
-});
-
-Update user name
+});<br>
+<br>
+Update user name<br>
 app.put('/users/:userName', (req, res) => {
   res.send('Successful update request of updated username');
-});
-
-Allow user to add a movie to list of favorites
+});<br>
+<br>
+Allow user to add a movie to list of favorites<br>
 app.put('/movies/:addmovie', (req, res) => {
   res.send('Successful post request of new movie to list of favorites');
-});
-
-Allow user to remove a movie from list of favorites
+});<br>
+<br>
+Allow user to remove a movie from list of favorites<br>
 app.delete('/movies/:movieTitle', (req, res) => {
   res.send('Successful delete request of movie from list of favorites');
-});
-
-Allow existing users to unregister
+});<br>
+<br>
+Allow existing users to unregister<br>
 app.delete('/users/:userName', (req, res) => 
   res.send('Successful delete request of user')
 });
