@@ -1,98 +1,156 @@
 <!DOCTYPE html>
 <head>
   <title>Internet Based Movie Data</title>
-  <style>
-  table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-  }
-  th, td {
-    padding: 5px;
-  }
-  th {
-    text-align: left;
-  }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
-Internet Movie Based Data <br>
-Here is where a guide to use and programming will be located<br>
-
-<table style="width:100%">
-  <tr>
-    <th>Request</th>
-    <th>URL</th>
-    <th>HTTP Method</th>
-    <th>Body</th>
-    <th>Response</th>
-  </tr>
-  <tr>
-    <td>Get a list of all movies</td>
-    <td>/movies</td>
-    <td>get</td>
-    <td>none</td>
-    <td>A JSON object holding data on all movies</td>
-  </tr>
-  <tr>
-    <td>Get info on a single movie</td>
-    <td>/movies/movieTitle</td>
-    <td>get</td>
-    <td>none</td>
-    <td>A JSON object holding data on movie, genre, and director<br>
-      {<br> "Genre": { <br>"Name": "Horror" <br> "Description": "A horror film is one that seeks to elicit fear in its audience for entertainment purposes." }
-        { "Director":{ <br>"Name": "John Carpenter" }<br>
-         { "Title": "The Thing"} </td>
-  </tr>
-  <tr>
-    <td>Get genre info</td>
-    <td>/movies/genre/genreTitle</td>
-    <td>get</td>
-    <td>none</td>
-    <td>ip</td>
-  </tr>
-  <tr>
-    <td>Get director info</td>
-    <td>/movies/directors/directorName</td>
-    <td>get</td>
-    <td>none</td>
-    <td>ip</td>
-  </tr>
-  <tr>
-    <td>allow a user to update their info</td>
-    <td>/users/userName[ID]/newName[ID]</td>
-    <td>put</td>
-    <td>none</td>
-    <td>ip</td>
-  </tr>
-  <tr>
-    <td>Register as a new user</td>
-    <td>/users/userName[ID]</td>
-    <td>post</td>
-    <td>A JSON object holding data about the user to add, structured like<br>
-      { "username": "tom123" "password": "password" </td>
-    <td>ip</td>
-  </tr>
-  <tr>
-    <td>Allow a user to add to their list of favorites</td>
-    <td>/users/userName[ID]/add/newMovie</td>
-    <td>post</td>
-    <td>none</td>
-    <td>ip</td>
-  </tr>
-  <tr>
-    <td>Allow a user to remove from their list of favorites</td>
-    <td>/users/userName[ID]/del/delMovie</td>
-    <td>delete</td>
-    <td>none</td>
-    <td>ip</td>
-  </tr>
-  <tr>
-    <td>Allow a user to deregister</td>
-    <td>/users/userName[ID]</td>
-    <td>delete</td>
-    <td>none</td>
-    <td>ip</td>
-  </tr>
-</table>
+<h2>Internet Movie Based Data</h2>
+<div class="rTable">
+  <div class="rTableRow">
+    <div class="rTableHead">Request</div>
+    <div class="rTableHead">URL</div>
+    <div class="rTableHead">HTTP Method</div>
+    <div class="rTableHead">Body</div>
+    <div class="rTableHead">Response</div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Get a list of all movies</div>
+    <div class="rTableCell">/movies</div>
+    <div class="rTableCell">get</div>
+    <div class="rTableCell">none</div>
+    <div class="rTableResponse">A JSON object holding data on all movies</div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Get info on a single movie</div>
+    <div class="rTableCell">/movies/movieTitle</div>
+    <div class="rTableCell">get</div>
+    <div class="rTableCell">none</div>
+    <div class="rTableResponse">A JSON object holding data on movie, genre, and director.<br>
+      <br>
+      {<br>
+      id:555, {
+      "Title": "The Thing"<br>
+      },<br>
+      "Genre": {<br>
+      "Name": "Horror"<br>
+      "Description": "A horror film is one that seeks to elicit fear in its audience for entertainment purposes."<br>
+      },<br>
+      <br>
+      "Director":<br>
+      "Name": "John Carpenter"<br>
+      }<br>
+    </div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Get genre info</div>
+    <div class="rTableCell">/movies/genre/genreTitle</div>
+    <div class="rTableCell">get</div>
+    <div class="rTableCell">none</div>
+    <div class="rTableResponse">      
+      { id:125,<br>
+      "Genre":<br>
+      "Name": "Horror"<br>
+      "Description": "A horror film is one that seeks to elicit fear in its audience for entertainment purposes."<br>
+      }</div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Get director info</div>
+    <div class="rTableCell">/movies/directors/directorName</div>
+    <div class="rTableCell">get</div>
+    <div class="rTableCell">none</div>
+    <div class="rTableResponse">
+      { id:225,<br>
+      "Director":<br>
+      "Name": "John Carpenter"<br>
+      }
+    </div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Register as a new user</div>
+    <div class="rTableCell">/users/userName</div>
+    <div class="rTableCell">post</div>
+    <div class="rTableCell">A JSON object holding data about the user to add.<br>
+      {<br>
+       id:105, "username": "tom123", "password": "mothersmaidenname"<br>
+      }
+      </div>
+    <div class="rTableResponse">none</div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Allow a user to add to their list of favorites</div>
+    <div class="rTableCell">/users/userName/add/newMovie</div>
+    <div class="rTableCell">post</div>
+    <div class="rTableCell">A JSON object holding data about a movie to add: <br>
+      {<br>
+      Title: "The Thing"<br>
+      }
+    </div>
+    <div class="rTableResponse">A JSON object holding data about the movie that was added:<br>
+      {<br>
+      "Movie" {
+        "Title": "The Thing"<br>
+        },<br>
+        "Genre": {<br>
+        "Name": "Horror"<br>
+        "Description": "A horror film is one that seeks to elicit fear in its audience for entertainment purposes."<br>
+        },<br>
+        "Director":<br>
+        "Name": "John Carpenter"<br>
+        }<br>
+    </div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Allow a user to update their info</div>
+    <div class="rTableCell">/users/userName/newName</div>
+    <div class="rTableCell">put</div>
+    <div class="rTableCell">A JSON object holding the user's current username:<br>
+    {<br>
+      "username": "tom123"<br>
+    }
+    </div>
+    <div class="rTableResponse">
+    {<br>
+    "new username": "tom456"<br>
+    }
+    </div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Allow a user to remove from their list of favorites</div>
+    <div class="rTableCell">/users/userName/del/delMovie</div>
+    <div class="rTableCell">delete</div>
+    <div class="rTableCell">A JSON object holding data about a movie to delete: <br>
+      {<br>
+      Title: "The Thing"<br>
+      }
+    </div>
+    <div class="rTableResponse">A JSON object holding data about the movie that was deleted:<br>
+      {<br>
+        "Movie" {
+        "Title": "The Thing"<br>
+        },<br>
+        "Genre": {<br>
+        "Name": "Horror"<br>
+        "Description": "A horror film is one that seeks to elicit fear in its audience for entertainment purposes."<br>
+        },<br>
+        "Director":<br>
+        "Name": "John Carpenter"<br>
+        }<br>
+    </div>
+  </div>
+  <div class="rTableRow">
+    <div class="rTableCell">Allow a user to unregister</div>
+    <div class="rTableCell">/users/userName</div>
+    <div class="rTableCell">delete</div>
+    <div class="rTableCell">A JSON object holding the user information to be unregistered:<br>
+      {<br>
+      "username": "tom123"<br>
+      }
+    </div>
+    <div class="rTableResponse">A JSON object holding data of the user to be unregistered:<br>
+    {<br>
+    "user": "tom123"<br>
+    }</div>
+  </div>
+</div>
 <br>
 <br>
 Return a list of ALL movies to the user<br>
@@ -139,4 +197,3 @@ Allow existing users to unregister<br>
 app.delete('/users/:userName', (req, res) => 
   res.send('Successful delete request of user')
 });
-
