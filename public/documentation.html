@@ -168,37 +168,37 @@
 <br />
 <br />
 Return a list of ALL movies to the user<br />
-app.get('/movies', (req, res) => { res.send('Successful get requests returning
+app.get('/movies', (req, res) = { res.send('Successful get requests returning
 data on all movies'); });<br />
 <br />
 Return data about a single movie by title to the user<br />
-app.get('/movies/:movieTitle', (req, res) => { res.send('Successful get request
+app.get('/movies/:movieTitle', (req, res) = { res.send('Successful get request
 of specific movie') )};<br />
 <br />
 Return data about genre<br />
-app.get('/movies/genre/:genreTitle', (req, res) => { res.send('Successful get
+app.get('/movies/genre/:genreTitle', (req, res) = { res.send('Successful get
 request of specific genre') });<br />
 <br />
 Return data about director<br />
-app.get('/movies/directors/:directorName', (req, res) => { res.send('Successful
+app.get('/movies/directors/:directorName', (req, res) = { res.send('Successful
 get request of director's info') });<br />
 <br />
 Register as new user<br />
-app.post('/users/:adduser', (req, res) => { res.send('Successful post request of
+app.post('/users/:adduser', (req, res) = { res.send('Successful post request of
 new user'); });<br />
 <br />
 Update user name<br />
-app.put('/users/:userName', (req, res) => { res.send('Successful update request
+app.put('/users/:userName', (req, res) = { res.send('Successful update request
 of updated username'); });<br />
 <br />
 Allow user to add a movie to list of favorites<br />
-app.put('/movies/:addmovie', (req, res) => { res.send('Successful post request
+app.put('/movies/:addmovie', (req, res) = { res.send('Successful post request
 of new movie to list of favorites'); });<br />
 <br />
 Allow user to remove a movie from list of favorites<br />
-app.delete('/movies/:movieTitle', (req, res) => { res.send('Successful delete
+app.delete('/movies/:movieTitle', (req, res) = { res.send('Successful delete
 request of movie from list of favorites'); });<br />
 <br />
 Allow existing users to unregister<br />
-app.delete('/users/:userName', (req, res) => res.send('Successful delete request
+app.delete('/users/:userName', (req, res) = res.send('Successful delete request
 of user') });
