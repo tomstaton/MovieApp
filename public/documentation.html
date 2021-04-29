@@ -21,50 +21,52 @@
   </div>
   <div class="rTableRow">
     <div class="rTableCell">Get info on a single movie</div>
-    <div class="rTableCell">/movies/movieTitle</div>
+    <div class="rTableCell">/movies/Title</div>
     <div class="rTableCell">get</div>
     <div class="rTableCell">none</div>
     <div class="rTableResponse">
       A JSON object holding data on movie, genre, and director.<br />
       <br />
       {<br />
-      id:555, { "Title": "The Thing"<br />
-      },<br />
-      "Genre": {<br />
-      "Name": "Horror"<br />
+      id:555, { "Title": "The Thing",<br />
+      "Genre": { "Name": "Horror",<br />
       "Description": "A horror film is one that seeks to elicit fear in its
-      audience for entertainment purposes."<br />
-      },<br />
-      <br />
+      audience for entertainment purposes." },<br />
       "Director":<br />
-      "Name": "John Carpenter"<br />
-      }<br />
+      { "Name": "John Carpenter",<br />
+      "Bio": "A producer, composer, and director; Carpenter is known
+       for his horror and action movies of the 1970s and 1980s",
+      "Birth": "01/16/48",
+      "Death": "N/A" }<br />
     </div>
   </div>
   <div class="rTableRow">
     <div class="rTableCell">Get genre info</div>
-    <div class="rTableCell">/movies/genre/genreTitle</div>
+    <div class="rTableCell">/genres/genreName
+    </div>
     <div class="rTableCell">get</div>
     <div class="rTableCell">none</div>
     <div class="rTableResponse">
-      { id:125,<br />
-      "Genre":<br />
+    A JSON object holding the genre information<br/>
       "Name": "Horror"<br />
       "Description": "A horror film is one that seeks to elicit fear in its
-      audience for entertainment purposes."<br />
-      }
+      audience for entertainment purposes." }
     </div>
   </div>
   <div class="rTableRow">
     <div class="rTableCell">Get director info</div>
-    <div class="rTableCell">/movies/directors/directorName</div>
+    <div class="rTableCell">directors/directorName</div>
     <div class="rTableCell">get</div>
     <div class="rTableCell">none</div>
     <div class="rTableResponse">
-      { id:225,<br />
+      A JSON object holding the added movie information with an id<br/>
+      { id: 999,
       "Director":<br />
-      "Name": "John Carpenter"<br />
-      }
+      "Name": "John Carpenter",<br />
+      "Bio": "A producer, composer, and director; Carpenter is known
+       for his horror and action movies of the 1970s and 1980s",
+      "Birth": "01/16/48",
+      "Death": "N/A" }<br />
     </div>
   </div>
   <div class="rTableRow">
@@ -73,132 +75,68 @@
     <div class="rTableCell">post</div>
     <div class="rTableCell">
       A JSON object holding data about the user to add.<br />
-      {<br />
-      id:105, "username": "tom123", "password": "mothersmaidenname"<br />
-      }
+      { "username": "tom123",<br/> 
+      "password": "mothersmaidenname"<br/>
+      "email": "tom123@gmail.com",<br/>
+      "Birthday": "01/01/2000" }
     </div>
-    <div class="rTableResponse">none</div>
+    <div class="rTableResponse">
+      A JSON object holding data about the added user.<br />
+      { "username": "tom123",<br/> 
+      "password": "mothersmaidenname"<br/>
+      "email": "tom123@gmail.com",<br/>
+      "Birthday": "01/01/2000" }
+    </div>
   </div>
   <div class="rTableRow">
     <div class="rTableCell">Allow a user to add to their list of favorites</div>
-    <div class="rTableCell">/users/userName/add/newMovie</div>
+    <div class="rTableCell">/users/Username/movies/Title</div>
     <div class="rTableCell">post</div>
-    <div class="rTableCell">
-      A JSON object holding data about a movie to add: <br />
-      {<br />
-      Title: "The Thing"<br />
-      }
-    </div>
+    <div class="rTableCell">none</div>
     <div class="rTableResponse">
       A JSON object holding data about the movie that was added:<br />
-      {<br />
-      "Movie" { "Title": "The Thing"<br />
-      },<br />
-      "Genre": {<br />
-      "Name": "Horror"<br />
-      "Description": "A horror film is one that seeks to elicit fear in its
-      audience for entertainment purposes."<br />
-      },<br />
-      "Director":<br />
-      "Name": "John Carpenter"<br />
-      }<br />
+        { "Title": "The Thing",<br />
+        "Description": "A horror film is one that seeks to elicit fear in its
+        audience for entertainment purposes." }<br />
+      <br />
     </div>
   </div>
   <div class="rTableRow">
     <div class="rTableCell">Allow a user to update their info</div>
-    <div class="rTableCell">/users/userName/newName</div>
+    <div class="rTableCell">/users/Username</div>
     <div class="rTableCell">put</div>
     <div class="rTableCell">
-      A JSON object holding the user's current username:<br />
-      {<br />
-      "username": "tom123"<br />
-      }
-    </div>
+      { "Username": "testuser3",<br/>
+        "Password": "password3",<br/>
+        "Email": "testuser333@gmail.com",<br/>
+        "Birthday": "03/03/92" }<br/>    </div>
     <div class="rTableResponse">
-      {<br />
-      "new username": "tom456"<br />
-      }
+      { "Username": "testuser4",<br/>
+        "Password": "password3",<br/>
+        "Email": "testuser333@gmail.com",<br/>
+        "Birthday": "03/03/92" }<br/>
     </div>
   </div>
   <div class="rTableRow">
     <div class="rTableCell">
       Allow a user to remove from their list of favorites
     </div>
-    <div class="rTableCell">/users/userName/del/delMovie</div>
+    <div class="rTableCell">/users/Username/movies/Title</div>
     <div class="rTableCell">delete</div>
-    <div class="rTableCell">
-      A JSON object holding data about a movie to delete: <br />
-      {<br />
-      Title: "The Thing"<br />
-      }
-    </div>
+    <div class="rTableCell">none</div>
     <div class="rTableResponse">
-      A JSON object holding data about the movie that was deleted:<br />
-      {<br />
-      "Movie" { "Title": "The Thing"<br />
-      },<br />
-      "Genre": {<br />
-      "Name": "Horror"<br />
-      "Description": "A horror film is one that seeks to elicit fear in its
-      audience for entertainment purposes."<br />
-      },<br />
-      "Director":<br />
-      "Name": "John Carpenter"<br />
-      }<br />
+      If the user movie is found, it will be deleted and display:
+      "Title was deleted."
     </div>
   </div>
   <div class="rTableRow">
     <div class="rTableCell">Allow a user to unregister</div>
-    <div class="rTableCell">/users/userName</div>
+    <div class="rTableCell">/users/Username</div>
     <div class="rTableCell">delete</div>
-    <div class="rTableCell">
-      A JSON object holding the user information to be unregistered:<br />
-      {<br />
-      "username": "tom123"<br />
-      }
-    </div>
+    <div class="rTableCell">none</div>
     <div class="rTableResponse">
-      A JSON object holding data of the user to be unregistered:<br />
-      {<br />
-      "user": "tom123"<br />
-      }
+    If the user name is found, it will be deleted and display:
+      "tom123 was deleted."
     </div>
   </div>
 </div>
-<br />
-<br />
-Return a list of ALL movies to the user<br />
-app.get('/movies', (req, res) = { res.send('Successful get requests returning
-data on all movies'); });<br />
-<br />
-Return data about a single movie by title to the user<br />
-app.get('/movies/:movieTitle', (req, res) = { res.send('Successful get request
-of specific movie') )};<br />
-<br />
-Return data about genre<br />
-app.get('/movies/genre/:genreTitle', (req, res) = { res.send('Successful get
-request of specific genre') });<br />
-<br />
-Return data about director<br />
-app.get('/movies/directors/:directorName', (req, res) = { res.send('Successful
-get request of director's info') });<br />
-<br />
-Register as new user<br />
-app.post('/users/:adduser', (req, res) = { res.send('Successful post request of
-new user'); });<br />
-<br />
-Update user name<br />
-app.put('/users/:userName', (req, res) = { res.send('Successful update request
-of updated username'); });<br />
-<br />
-Allow user to add a movie to list of favorites<br />
-app.put('/movies/:addmovie', (req, res) = { res.send('Successful post request
-of new movie to list of favorites'); });<br />
-<br />
-Allow user to remove a movie from list of favorites<br />
-app.delete('/movies/:movieTitle', (req, res) = { res.send('Successful delete
-request of movie from list of favorites'); });<br />
-<br />
-Allow existing users to unregister<br />
-app.delete('/users/:userName', (req, res) = res.send('Successful delete request
-of user') });
