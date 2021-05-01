@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-mongoose.connect("process.env.CONNECTION_URI", 
+mongoose.connect(process.env.CONNECTION_URI, 
   { useNewUrlParser: true, useUnifiedTopology: true });
 
 //mongoose.connect("mongodb://localhost:27017/movies", 
