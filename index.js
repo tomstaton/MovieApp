@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.createConnection( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //mongoose.connect("mongodb://localhost:27017/movies", 
 //{ useNewUrlParser: true, useUnifiedTopology: true });
@@ -353,4 +353,3 @@ const port = process.env.PORT || 8080;
 app.listen(port, '0.0.0.0',() => {
  console.log('Listening on Port ' + port);
 });
-
