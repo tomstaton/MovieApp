@@ -10,6 +10,7 @@ const passport = require('passport');
   require('./passport');
 const auth = require('./auth')(app);
 const { check, validationResult } = require('express-validator');
+const uuid = require('uuid');
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
@@ -32,8 +33,6 @@ const Movies = Models.Movie;
 const Users = Models.User;
 const Genres = Models.Genre
 const Directors = Models.Director
-
-uuid = require('uuid')
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
