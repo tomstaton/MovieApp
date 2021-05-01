@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(morgan('common'));
 
-let allowedOrigins = ['http://localhost:8080'];
+let allowedOrigins = ['http://localhost:8080', 'https://internetbasedmoviedata.herokuapp.com'];
 app.use(cors({
   origin: (origin, callback) => {
     if(!origin) return callback(null, true);
@@ -39,7 +39,7 @@ app.use((err, req, res, next) => {
   res.status(500).send('Something broke!');
 });
 
-mongoose.createConnection( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect( process.env.CONNECTION_URI, { useNewUrlParser: true, useUnifiedTopology: true });
 
 //mongoose.connect("mongodb://localhost:27017/movies", 
 //{ useNewUrlParser: true, useUnifiedTopology: true });
