@@ -33,7 +33,7 @@ let userSchema = mongoose.Schema({
   Username: {type: String, required: true},
   Password: {type: String, required: true},
   Email: {type: String, required: true},
-  Birthday: {type: Date},
+  Birthday: Date,
   FavoriteMovies: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Movie' }]
 });
 
@@ -42,7 +42,7 @@ userSchema.statics.hashPassword = (password) => {
 };
 
 userSchema.methods.validatePassword = function(password) {
-  return bcrypt.compareSync(password, this.Password)
+  return bcrypt.compareSync(password, this.Password);
 };
 
 let Movie = mongoose.model('Movie', movieSchema);
