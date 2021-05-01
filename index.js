@@ -9,7 +9,7 @@ const cors = require('cors');
 const passport = require('passport');
   require('./passport');
 const auth = require('./auth')(app);
-const { check, validationResult } = require('exress-validator');
+const { check, validationResult } = require('express-validator');
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
