@@ -195,8 +195,7 @@ app.get('/users/:Username', passport.authenticate('jwt', {session: false}), (req
 app.post('/users', [
   //check('[field in req.body to validate]', '[error message if validation fails']).[validation.method]();
   check('Username', 'Username is required.').isLength({min: 5},),
-  check('Username', 'Username contains non alpha numeric characters - not allowed.')
-    .isAplhanumeric(),
+  check('Username', 'Username contains non alpha numeric characters - not allowed.').isAplhanumeric(),
   check('Password', 'Password is required.').not().isEmpty(),
   check('Email', 'Email does not appear to be valid.').isEmail()
   ], (req, res) => {
