@@ -192,9 +192,10 @@ app.get('/users/:Username', passport.authenticate('jwt', {session: false}), (req
 });
 
 //Add a user
-app.post('/users', [
+app.post('/users',
   //check('[field in req.body to validate]', '[error message if validation fails']).[validation.method]();
-  check('Username', 'Username is required.').isLength({min: 5},),
+  [
+  check('Username', 'Username is required.').isLength({min: 5}),
   check('Username', 'Username contains non-alphanumeric characters - not allowed.').isAlphanumeric(),
   check('Password', 'Password is required.').not().isEmpty(),
   check('Email', 'Email does not appear to be valid.').isEmail()
@@ -310,6 +311,7 @@ app.post('/movies', passport.authenticate('jwt', {session: false}), (req, res) =
     });
 });
 
+//delete movie by 
 app.delete('/movies/:movieTitle', passport.authenticate('jwt', {session: false}), (req, res) => {
   Movies.findOneAndRemove({ Title: req.params.Title})
     .then((movie) => {
