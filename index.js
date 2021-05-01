@@ -8,13 +8,14 @@ const app = express();
 const cors = require('cors');
 const passport = require('passport');
   require('./passport');
-const auth = require('./auth')(app);
 const { check, validationResult } = require('express-validator');
 const uuid = require('uuid');
 
 app.use(bodyParser.json());
 app.use(express.static('public'));
 app.use(morgan('common'));
+
+const auth = require('./auth')(app);
 
 let allowedOrigins = ['http://localhost:8080', 'https://internetbasedmoviedata.herokuapp.com'];
 app.use(cors({
