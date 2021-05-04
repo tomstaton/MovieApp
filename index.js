@@ -132,7 +132,7 @@ app.get(
   "/movies/genre/:Genre",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Movies.findOne({ 'Genre.Name': req.params.Genre })
+    Movies.findOne({ "Genre.Name": req.params.Genre })
       .then((movie) => {
         res.json(movie.Genre);
       })
@@ -148,7 +148,7 @@ app.get(
   "/movies/director/:Name",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
-    Movies.findOne({ 'Director.Name': req.params.Director })
+    Movies.findOne({ "Director.Name": req.params.Director })
       .then((movie) => {
         res.json(movie.Director);
       })
@@ -276,8 +276,8 @@ app.delete(
       (err, updatedUser) => {
         if (err) {
           console.error(err);
-          res.status(500).send('Error: ' + err);
-        } err {
+          res.status(500).send("Error: " + err);
+        } else {
           res.json(updatedUser);
         }
       }
