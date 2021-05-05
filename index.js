@@ -145,7 +145,7 @@ app.get(
 
 //get a specific directors info
 app.get(
-  "/movies/director/:Name",
+  "/movies/director/:Director",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOne({ "Director.Name": req.params.Director })
