@@ -19,6 +19,7 @@ const auth = require("./auth")(app);
 
 let allowedOrigins = [
   "http://localhost:8080",
+  "http://localhost:1234",
   "https://internetbasedmoviedata.herokuapp.com",
 ];
 app.use(
