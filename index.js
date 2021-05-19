@@ -17,11 +17,11 @@ app.use(morgan("common"));
 
 const auth = require("./auth")(app);
 
-let allowedOrigins = [
+/*let allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:1234",
   "https://internetbasedmoviedata.herokuapp.com",
-];
+];*/
 app.use(
   cors({
     origin: (origin, callback) => {
