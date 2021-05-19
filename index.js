@@ -16,7 +16,7 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(morgan("common"));
 
-const auth = require("./auth")(app);
+const auth = require("./auth.js")(app);
 
 /*let allowedOrigins = [
   "http://localhost:8080",
