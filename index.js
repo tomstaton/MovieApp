@@ -6,6 +6,7 @@ const Models = require("./models.js");
 const { response } = require("express");
 const app = express();
 const cors = require("cors");
+app.use(cors());
 const passport = require("passport");
 require("./passport");
 const { check, validationResult } = require("express-validator");
@@ -17,12 +18,12 @@ app.use(morgan("common"));
 
 const auth = require("./auth")(app);
 
-let allowedOrigins = [
+/*let allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:1234",
   "https://internetbasedmoviedata.herokuapp.com",
 ];
-/*app.use(
+app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) return callback(null, true);
