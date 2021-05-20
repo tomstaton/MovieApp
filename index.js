@@ -244,7 +244,7 @@ app.put(
 );
 
 app.put(
-  "/movies/:Movie/:Title",
+  "/movies/:Title",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOneAndUpdate(
