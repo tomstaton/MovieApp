@@ -6,7 +6,6 @@ const Models = require("./models.js");
 const { response } = require("express");
 const app = express();
 const cors = require("cors");
-app.use(cors());
 const passport = require("passport");
 require("./passport");
 const { check, validationResult } = require("express-validator");
@@ -18,7 +17,7 @@ app.use(morgan("common"));
 
 const auth = require("./auth.js")(app);
 
-/*let allowedOrigins = [
+let allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:1234",
   "https://internetbasedmoviedata.herokuapp.com",
@@ -36,7 +35,7 @@ app.use(
       return callback(null, true);
     },
   })
-);*/
+);
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -66,16 +65,20 @@ app.get("/documentation", (req, res) => {
 });
 
 //get all movies
-app.get("/movies", function (req, res) {
-  Movies.find()
-    .then((movies) => {
-      res.status(201).json(movies);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error: " + err);
-    });
-});
+app.get(
+  "/movies",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.find()
+      .then((movies) => {
+        res.status(201).json(movies);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error: " + err);
+      });
+  }
+);
 
 //get all users
 app.get(
@@ -183,7 +186,8 @@ app.post(
     }
 
     let hashedPassword = Users.hashPassword(req.body.Password);
-    Users.findOne({ Username: req.body.Username }) // Search to see if a user with the requested username already exists
+    // Search to see if a user with the requested username already exists
+    Users.findOne({ Username: req.body.Username })
       .then((user) => {
         if (user) {
           //If the user is found, send a response that it already exists
@@ -233,6 +237,28 @@ app.put(
           res.status(500).send("Error: " + err);
         } else {
           res.json(updatedUser);
+        }
+      }
+    );
+  }
+);
+
+app.put(
+  "/movies/:Movie/:Title",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOneAndUpdate(
+      { Title: req.params.Title },
+      {
+        $push: { FavoriteMovies: req.params.Title },
+      },
+      { new: true },
+      (err, updateMovie) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updateMovie);
         }
       }
     );
