@@ -5,7 +5,6 @@ const mongoose = require("mongoose");
 const Models = require("./models.js");
 const { response } = require("express");
 const app = express();
-const cors = require("cors");
 const passport = require("passport");
 require("./passport");
 const { check, validationResult } = require("express-validator");
@@ -15,8 +14,10 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(morgan("common"));
 
-const auth = require("./auth.js")(app);
+const auth = require("./auth")(app);
 
+const cors = require("cors");
+//app.use(cors());
 let allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:1234",
