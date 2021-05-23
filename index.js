@@ -17,8 +17,7 @@ app.use(morgan("common"));
 const auth = require("./auth")(app);
 
 const cors = require("cors");
-app.use(cors());
-/*let allowedOrigins = [
+let allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:1234",
   "https://internetbasedmoviedata.herokuapp.com",
@@ -36,7 +35,7 @@ app.use(
       return callback(null, true);
     },
   })
-);*/
+);
 
 const Movies = Models.Movie;
 const Users = Models.User;
