@@ -16,8 +16,8 @@ app.use(morgan("common"));
 
 const auth = require("./auth")(app);
 
-const cors = require("cors");
-app.use(cors());
+//const cors = require("cors");
+//app.use(cors());
 /*let allowedOrigins = [
   "http://localhost:8080",
   "http://localhost:1234",
