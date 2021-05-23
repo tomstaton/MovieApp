@@ -14,8 +14,6 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(morgan("common"));
 
-const auth = require("./auth")(app);
-
 const cors = require("cors");
 let allowedOrigins = [
   "http://localhost:8080",
@@ -37,6 +35,7 @@ app.use(
   })
 );
 
+const auth = require("./auth")(app);
 const Movies = Models.Movie;
 const Users = Models.User;
 //const Genres = Models.Genre;
