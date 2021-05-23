@@ -16,10 +16,9 @@ app.use(morgan("common"));
 
 const auth = require("./auth")(app);
 
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  next();
-});
+const cors = require("cors");
+app.use(cors());
+app.options("*", cors());
 
 const Movies = Models.Movie;
 const Users = Models.User;
