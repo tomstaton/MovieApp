@@ -242,14 +242,19 @@ app.put(
   }
 );
 
-/*app.put(
+app.put(
   "/movies/:Title",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOneAndUpdate(
       { Title: req.params.Title },
       {
-        $push: { FavoriteMovies: req.params.Title },
+        $set: {
+          Title: req.body.Title,
+          Description: req.body.Description,
+          Director: req.body.Director,
+          Genre: req.body.Genre,
+        },
       },
       { new: true },
       (err, updateMovie) => {
@@ -262,7 +267,7 @@ app.put(
       }
     );
   }
-);*/
+);
 
 //add a movie to list of favorites
 app.post(
