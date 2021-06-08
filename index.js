@@ -269,8 +269,36 @@ app.put(
   }
 );
 
-//update genre info
+//update by id
 app.put(
+  "/movies/:_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOneAndUpdate(
+      { _id: req.params._id },
+      {
+        $set: {
+          Title: req.body.Title,
+          Description: req.body.Description,
+          Director: req.body.Director,
+          Genre: req.body.Genre,
+        },
+      },
+      { new: true },
+      (err, updateMovie) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updateMovie);
+        }
+      }
+    );
+  }
+);
+
+//update genre info
+/*app.put(
   "/movies/:Genre",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
@@ -293,7 +321,7 @@ app.put(
       }
     );
   }
-);
+);*/
 
 //update director info
 app.put(
