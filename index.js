@@ -40,6 +40,8 @@ const Movies = Models.Movie;
 const Users = Models.User;
 //const Genres = Models.Genre;
 //const Directors = Models.Director;
+const dotenv = require("dotenv");
+dotenv.config();
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -50,9 +52,6 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
-//mongoose.connect("mongodb://localhost:27017/movies",
-//{ useNewUrlParser: true, useUnifiedTopology: true });
 
 // GET requests
 app.get("/", (req, res) => {
