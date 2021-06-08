@@ -1,3 +1,5 @@
+const dotenv = require("dotenv");
+dotenv.config();
 const bodyParser = require("body-parser");
 const express = require("express");
 const morgan = require("morgan");
@@ -40,8 +42,6 @@ const Movies = Models.Movie;
 const Users = Models.User;
 //const Genres = Models.Genre;
 //const Directors = Models.Director;
-const dotenv = require("dotenv");
-dotenv.config();
 
 app.use((err, req, res, next) => {
   console.error(err.stack);
@@ -241,6 +241,7 @@ app.put(
   }
 );
 
+//update movie info
 app.put(
   "/movies/:Title",
   passport.authenticate("jwt", { session: false }),
@@ -253,6 +254,60 @@ app.put(
           Description: req.body.Description,
           Director: req.body.Director,
           Genre: req.body.Genre,
+        },
+      },
+      { new: true },
+      (err, updateMovie) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updateMovie);
+        }
+      }
+    );
+  }
+);
+
+//update genre info
+app.put(
+  "/movies/:Genre",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOneAndUpdate(
+      { Genre: req.params.Name },
+      {
+        $set: {
+          Name: req.body.Name,
+          Description: req.body.Description,
+        },
+      },
+      { new: true },
+      (err, updateMovie) => {
+        if (err) {
+          console.error(err);
+          res.status(500).send("Error: " + err);
+        } else {
+          res.json(updateMovie);
+        }
+      }
+    );
+  }
+);
+
+//update director info
+app.put(
+  "/movies/:Director",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Movies.findOneAndUpdate(
+      { Title: req.params.Title },
+      {
+        $set: {
+          Name: req.body.Name,
+          Bio: req.body.Bio,
+          Birth: req.body.Birth,
+          Death: req.body.Death,
         },
       },
       { new: true },
