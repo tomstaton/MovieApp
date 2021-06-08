@@ -524,8 +524,8 @@ app.post(
       });
   }
 );
-
-//delete movie by
+*/
+//delete movie by title
 app.delete(
   "/movies/:movieTitle",
   passport.authenticate("jwt", { session: false }),
@@ -544,7 +544,6 @@ app.delete(
       });
   }
 );
-*/
 
 const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
