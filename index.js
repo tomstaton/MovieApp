@@ -16,26 +16,28 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 app.use(morgan("common"));
 
-const cors = require("cors");
-let allowedOrigins = [
-  "http://localhost:8080",
-  "http://localhost:1234",
-  "https://internetbasedmoviedata.herokuapp.com",
-];
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) return callback(null, true);
-      if (allowedOrigins.indexOf(origin) === -1) {
-        let message =
-          "The CORS policy for this application doesn't allow access from origin" +
-          origin;
-        return callback(new Error(message), false);
-      }
-      return callback(null, true);
-    },
-  })
-);
+app.use(cors());
+
+// const cors = require("cors");
+// let allowedOrigins = [
+//   "http://localhost:8080",
+//   "http://localhost:1234",
+//   "https://internetbasedmoviedata.herokuapp.com",
+// ];
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin) return callback(null, true);
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         let message =
+//           "The CORS policy for this application doesn't allow access from origin" +
+//           origin;
+//         return callback(new Error(message), false);
+//       }
+//       return callback(null, true);
+//     },
+//   })
+// );
 
 const auth = require("./auth")(app);
 const Movies = Models.Movie;
@@ -493,7 +495,8 @@ app.post(
       });
   }
 );
-
+*/
+//add movie
 app.post(
   "/movies",
   passport.authenticate("jwt", { session: false }),
@@ -524,10 +527,10 @@ app.post(
       });
   }
 );
-*/
+
 //delete movie by title
 app.delete(
-  "/movies/:movieTitle",
+  "/movies/:Title",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     Movies.findOneAndRemove({ Title: req.params.Title })
